@@ -55,6 +55,7 @@
                     <connections>
                         <outlet property="headerView" destination="XH6-qh-fhO" id="szL-lg-Cx1"/>
                         <outlet property="heightConstraint" destination="PKh-D4-z1i" id="tcy-C4-c4e"/>
+                        <outlet property="plusIconOutlet" destination="tnT-fj-KHU" id="m7Z-lX-hHG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

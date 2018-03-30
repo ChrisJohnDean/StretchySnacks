@@ -8,10 +8,12 @@
 
 import UIKit
 
+
 class StretchyViewController: UIViewController {
     
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var plusIconOutlet: UIButton!
     
     var plusButtonSelected: Bool = false
     
@@ -30,13 +32,18 @@ class StretchyViewController: UIViewController {
 
     @IBAction func plusIconAction(_ sender: Any) {
         
+        
         if plusButtonSelected {
+            let rotate = CGAffineTransform(rotationAngle: 0)
+            plusIconOutlet.transform = rotate
             UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: .curveEaseInOut, animations: {
                 self.heightConstraint.constant = 44
                 self.view.layoutIfNeeded()
                 self.plusButtonSelected = false
             }, completion: nil)
         } else {
+            let rotate = CGAffineTransform(rotationAngle: 0.785398)
+            plusIconOutlet.transform = rotate
             UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: .curveEaseInOut, animations: {
                 self.heightConstraint.constant = 200
                 self.view.layoutIfNeeded()
