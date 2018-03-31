@@ -21,6 +21,8 @@ class StretchyViewController: UIViewController, UITableViewDelegate, UITableView
     var selectedImages = Array<String>()
     var plusButtonSelected: Bool = false
     var stackView: UIStackView!
+    var snackLabel: UILabel!
+    var labelCenterY = NSLayoutConstraint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,22 +40,24 @@ class StretchyViewController: UIViewController, UITableViewDelegate, UITableView
         addTapGesture()
         createStackView()
         stackView.isHidden = true
+        addLabel()
         
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
     }
 
     @IBAction func plusIconAction(_ sender: Any) {
         animateSpringyHeader()
+    }
+    
+    func addLabel() {
+        snackLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        snackLabel.text = "SNACKS"
+        headerView.addSubview(snackLabel)
+        snackLabel.translatesAutoresizingMaskIntoConstraints = false
+        snackLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+        labelCenterY = snackLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+        labelCenterY.isActive = true
+        
     }
     
     func addTapGesture() {
@@ -108,6 +112,9 @@ class StretchyViewController: UIViewController, UITableViewDelegate, UITableView
             let rotate = CGAffineTransform(rotationAngle: 0)
             plusIconOutlet.transform = rotate
             stackView.isHidden = true
+            snackLabel.text = "SNACK"
+            labelCenterY.constant = 0
+            self.view.layoutIfNeeded()
             UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: .curveEaseInOut, animations: {
                 self.heightConstraint.constant = 44
                 self.view.layoutIfNeeded()
@@ -117,6 +124,9 @@ class StretchyViewController: UIViewController, UITableViewDelegate, UITableView
             let rotate = CGAffineTransform(rotationAngle: 0.785398)
             plusIconOutlet.transform = rotate
             stackView.isHidden = false
+            snackLabel.text = "Add a SNACK"
+            labelCenterY.constant = -50
+            self.view.layoutIfNeeded()
             UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: .curveEaseInOut, animations: {
                 self.heightConstraint.constant = 200
                 self.view.layoutIfNeeded()
