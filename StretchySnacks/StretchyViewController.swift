@@ -27,6 +27,18 @@ class StretchyViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createImageViewArray()
+        addTapGesture()
+        createStackView()
+        stackView.isHidden = true
+        addLabel()
+    }
+
+    @IBAction func plusIconAction(_ sender: Any) {
+        animateSpringyHeader()
+    }
+    
+    func createImageViewArray() {
         let oreoView = UIImageView(image: #imageLiteral(resourceName: "oreos"))
         imageViewArray.append(oreoView)
         let pocketView = UIImageView(image: #imageLiteral(resourceName: "pizza_pockets"))
@@ -37,16 +49,6 @@ class StretchyViewController: UIViewController, UITableViewDelegate, UITableView
         imageViewArray.append(popsicleView)
         let ramenView = UIImageView(image: #imageLiteral(resourceName: "ramen"))
         imageViewArray.append(ramenView)
-        addTapGesture()
-        createStackView()
-        stackView.isHidden = true
-        addLabel()
-        
-        
-    }
-
-    @IBAction func plusIconAction(_ sender: Any) {
-        animateSpringyHeader()
     }
     
     func addLabel() {
@@ -109,24 +111,28 @@ class StretchyViewController: UIViewController, UITableViewDelegate, UITableView
     func animateSpringyHeader() {
         
         if plusButtonSelected {
+            
             let rotate = CGAffineTransform(rotationAngle: 0)
             plusIconOutlet.transform = rotate
             stackView.isHidden = true
             snackLabel.text = "SNACK"
             labelCenterY.constant = 0
             self.view.layoutIfNeeded()
+            
             UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: .curveEaseInOut, animations: {
                 self.heightConstraint.constant = 44
                 self.view.layoutIfNeeded()
                 self.plusButtonSelected = false
             }, completion: nil)
         } else {
+            
             let rotate = CGAffineTransform(rotationAngle: 0.785398)
             plusIconOutlet.transform = rotate
             stackView.isHidden = false
             snackLabel.text = "Add a SNACK"
             labelCenterY.constant = -50
             self.view.layoutIfNeeded()
+            
             UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.2, options: .curveEaseInOut, animations: {
                 self.heightConstraint.constant = 200
                 self.view.layoutIfNeeded()
@@ -153,10 +159,22 @@ extension StretchyViewController {
     
 }
 
+// UITableViewDelegate methods
+extension StretchyViewController {
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.selectedImages.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
 
-
-
-
+    }
+}
 
 
 
