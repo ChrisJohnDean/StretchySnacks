@@ -43,12 +43,43 @@
                                     <constraint firstAttribute="trailing" secondItem="tnT-fj-KHU" secondAttribute="trailing" constant="8" id="qk4-H8-gi0"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZXb-Wr-HKq">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="9vI-1Z-7RP" style="IBUITableViewCellStyleDefault" id="zch-Vc-dmo">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zch-Vc-dmo" id="jva-tC-IKq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9vI-1Z-7RP">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="mr6-Cs-aAM"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JTQ-tP-PVY"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XH6-qh-fhO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="X21-Bh-wkJ"/>
                             <constraint firstItem="XH6-qh-fhO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="be3-t1-sG1"/>
+                            <constraint firstItem="ZXb-Wr-HKq" firstAttribute="top" secondItem="XH6-qh-fhO" secondAttribute="bottom" constant="8" id="cMp-av-wqL"/>
+                            <constraint firstItem="ZXb-Wr-HKq" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="p74-uk-ama"/>
                             <constraint firstItem="XH6-qh-fhO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="sCG-Zl-7q8"/>
+                            <constraint firstItem="ZXb-Wr-HKq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xYs-Gz-7Uw"/>
+                            <constraint firstItem="ZXb-Wr-HKq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xnn-bw-S2O"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -56,6 +87,7 @@
                         <outlet property="headerView" destination="XH6-qh-fhO" id="szL-lg-Cx1"/>
                         <outlet property="heightConstraint" destination="PKh-D4-z1i" id="tcy-C4-c4e"/>
                         <outlet property="plusIconOutlet" destination="tnT-fj-KHU" id="m7Z-lX-hHG"/>
+                        <outlet property="tableView" destination="ZXb-Wr-HKq" id="NyE-ht-nqw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
